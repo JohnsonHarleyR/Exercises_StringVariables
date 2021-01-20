@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace StringVariables
 {
@@ -39,6 +40,41 @@ namespace StringVariables
 
             // Display location of last space, not counting those at the start and end
             Console.WriteLine($"Index of last space: {fullName.Trim().LastIndexOf(" ")}");
+
+
+            /* Exercise 2 Instructions
+             *  • Update your variable to ask the user for their social security number, store their input into a string
+                variable
+                • Display only the first digits of their SSN
+                • Display only the last four digits of their SSN
+                • Display the whole SSN removing all dashes and replacing all but the last four digits with the * symbol
+            */
+
+            // Starting a new variable
+            string ssn = "";
+            string replace;
+
+            // Ask user's SSN and store input
+            while (string.IsNullOrEmpty(ssn)) // repeats until the user enters something
+                                              // TODO does not check for length or other factors in this exercise
+            {
+                Console.WriteLine("\nWhat is your Social Security Number?");
+                ssn = Console.ReadLine();
+                ssn = ssn.Trim(); // get rid of spaces at front and last
+
+            }
+
+            // Display first 3 digits
+            Console.WriteLine(ssn.Substring(0, 3));
+
+            // Display last 4 digits
+            Console.WriteLine(ssn.Substring(ssn.Length - 4, 4));
+
+            // remove all dashes and replace all numbers with *
+            replace = ssn;
+            replace = replace.Replace("-", "");
+            replace = Regex.Replace(replace, "[0-9]", "*");
+            Console.WriteLine(replace);
 
         }
     }
